@@ -1,0 +1,25 @@
+version: "2.1"
+volumes:
+    sources:
+services:
+  ide:
+    # build: ./ide-mvp 
+    image: bh.cr/gh_rahul_thakoor/ide-aarch64
+    # image: gitpod/openvscode-server:1.67.2
+    # privileged: true
+    restart: unless-stopped
+    network_mode: host
+    ports:
+      - 3000
+    volumes:
+      - 'sources:/usr/src/sources'
+    labels:
+      - io.balena.features.balena-socket=1
+      - io.balena.features.balena-api=1
+  app:
+    build: ./app
+    
+  # update-locker:
+  #   build: ./update-locker
+
+  
